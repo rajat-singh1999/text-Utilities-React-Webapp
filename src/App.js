@@ -6,7 +6,9 @@ function App() {
   return (
     <>
       <Navbar title="Text Utils"/>
+      <div className="container my-3">
       <TextForm/>
+      </div>
     </>
   );
 }
