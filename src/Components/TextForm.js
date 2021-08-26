@@ -1,14 +1,16 @@
 import React from 'react'
 import { useState } from 'react'
 
-export default function TextForm() {
+export default function TextForm(props) {
     const handleUpClick = ()=>{
         console.log('UpperCase was clicked!')
         setText(text.toUpperCase())
+        props.showAlert("All letters set to upper-case!", "success");
     }
 
     const handleLoClick = ()=>{
         setText(text.toLowerCase())
+        props.showAlert("All letters set to lower-case!", "success");
     }
 
     const handleAltClick = ()=>{
@@ -22,21 +24,25 @@ export default function TextForm() {
             }
         }
         setText(temp)
+        props.showAlert("Alternate case action performed.", "success");
     }
 
     const handleCopy = ()=>{
         let text = document.getElementById('my-box')
         text.select();
         navigator.clipboard.writeText(text.value)
+        props.showAlert("Text copied to the clipboard!", "success");
     }
 
     const handleExtraSpaces = ()=>{
         let newText = text.split(/[  ]+/)
         setText(newText.join(" "))
+        props.showAlert("Extra spaces removed from the text.", "success");
     }
 
     const handleClearClick = ()=>{
         setText("")
+        props.showAlert("Text has been cleared!", "warning");
     }
 
     const handleOnChange = (event)=>{

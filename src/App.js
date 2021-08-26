@@ -1,9 +1,15 @@
 import './App.css';
 import {useState} from 'react';
-// import About from './Components/About';
+import About from './Components/About';
 import Navbar from './Components/Navbar';
 import TextForm from './Components/TextForm';
 import Alert from './Components/Alert';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() { 
   const [darkMode, setDarkMode] = useState("light");
@@ -11,30 +17,58 @@ function App() {
 
   const showAlert = (message, type)=>{
     setAlert({msg: message, type: type});
+    setTimeout(()=>{
+      setAlert(null)
+    }, 1500);
   }
 
-  const toggleMode = ()=>{
-    if(darkMode==="dark"){
+  const toggleMode = (event)=>{
+    let theme = event.target.id;
+    if(theme==="light"){
       setDarkMode("light");
       document.body.style.backgroundColor='white';
       document.body.style.color='black';
+      showAlert("Light mode has been enabled.", "success");
     }
-    else{
+    else if(theme==="dark"){  
       setDarkMode("dark");
       document.body.style.backgroundColor='#191919';
-      document.body.style.color='#0d6efd';
+      document.body.style.color='white';
+      showAlert("Dark mode has been enabled.", "success");
+    }
+    else if(theme==='green'){
+      setDarkMode("green");
+      document.body.style.backgroundColor='#198754';
+      document.body.style.color='white';
+      showAlert("Green mode has been enabled.", "success");
+    }
+    else{      
+      setDarkMode("blue");
+      document.body.style.backgroundColor='grey';
+      document.body.style.color='white';
+      showAlert("Grey mode has been enabled.", "success");
     }
   }
+
 
 
   return (
     <>
-      <Navbar title="Text Format" mode={darkMode} toggleMode={toggleMode}/>
+      <Router>
+      <Navbar title="Text Manip" mode={darkMode} toggleMode={toggleMode}/>
       <div className="container my-3">
-      <Alert alert={alert}/>
-      <TextForm/>
-      {/* <About/> */}
+        <Switch>
+            <Route exact path="/about">
+              <About/>
+            </Route>
+
+            <Route exact path="/">
+              <Alert alert={alert}/>
+              <TextForm showAlert={showAlert}/>
+            </Route>
+        </Switch>
       </div>
+    </Router>
     </>
   );
 }
