@@ -62,7 +62,7 @@ export default function TextForm() {
             <h2>Your text summary</h2>
             <p>{(text.length===0)?0:(text.split(" ").length)} words, {text.length} characters.</p>
             <p>{(text.length===0)?0:(0.008 * text.split(" ").length)} minutes read.</p>
-            <h2>Preview</h2>
+            <h2>{text.length===0?"Enter text to preview here...":"Preview"}</h2>
             <p>{text}</p>
         </div>
         </>
