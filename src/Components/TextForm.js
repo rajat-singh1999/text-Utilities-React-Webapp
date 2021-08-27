@@ -2,6 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 
 export default function TextForm(props) {
+    const [text, setText] = useState('');
+
+    let disable = "disabled"
+    if(text.length!==0){
+        disable="";
+    }
     const handleUpClick = ()=>{
         console.log('UpperCase was clicked!')
         setText(text.toUpperCase())
@@ -49,7 +55,6 @@ export default function TextForm(props) {
         setText(event.target.value)
     }
 
-    const [text, setText] = useState('');
     return (
         <>
         <div className="container">
@@ -57,17 +62,17 @@ export default function TextForm(props) {
             <div className="mb-3">
             <textarea className="form-control" id="my-box" onChange={handleOnChange} value={text} rows="10"></textarea>
             </div>
-            <button className="btn btn-primary" onClick={handleUpClick}>Convert to Uppercase</button>
-            <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to Lowercase</button>
-            <button className="btn btn-primary mx-2" onClick={handleAltClick}>Convert to AlternateCase</button>
-            <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
-            <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy Text</button>
-            <button className="btn btn-danger mx-2" onClick={handleClearClick}>Clear</button>
+            <button className={`btn btn-primary mx-2 my-2 ${disable}`} onClick={handleUpClick}>Convert to Uppercase</button>
+            <button className={`btn btn-primary mx-2 my-2 ${disable}`} onClick={handleLoClick}>Convert to Lowercase</button>
+            <button className={`btn btn-primary mx-2 my-2 ${disable}`} onClick={handleAltClick}>Convert to AlternateCase</button>
+            <button className={`btn btn-primary mx-2 my-2 ${disable}`} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+            <button className={`btn btn-primary mx-2 my-2 ${disable}`} onClick={handleCopy}>Copy Text</button>
+            <button className={"btn btn-danger mx-2 my-2 "+disable} onClick={handleClearClick}>Clear</button>
         </div>
         <div className="container my-3">
             <h2>Your text summary</h2>
-            <p>{(text.length===0)?0:(text.split(" ").length)} words, {text.length} characters.</p>
-            <p>{(text.length===0)?0:(0.008 * text.split(" ").length)} minutes read.</p>
+            <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words, {text.length} characters.</p>
+            <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length * 0.008} minutes read.</p>
             <h2>{text.length===0?"Enter text to preview here...":"Preview"}</h2>
             <p>{text}</p>
         </div>

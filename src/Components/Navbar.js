@@ -1,6 +1,6 @@
 import React from 'react'
 import {PropTypes} from 'prop-types'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 
 export default function Navbar(props) {
     let navColor="light";
@@ -13,18 +13,18 @@ export default function Navbar(props) {
         <div>
         <nav className={"navbar navbar-expand-lg navbar-"+ navColor +" bg-"+ navColor}>
         <div className="container-fluid">
-                <Link className="navbar-brand" style={{color: navTextColor}} to="/">{props.title}</Link>
+                <a className="navbar-brand" style={{color: navTextColor}} href="/">{props.title}</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" style={{color: navTextColor}} to="/">Home</Link>
+                <a className="nav-link active" aria-current="page" style={{color: navTextColor}} href="/">Home</a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" style={{color: navTextColor}} to="/about">About</Link>
-              </li>
+              </li> */}
             </ul>
             
             <div className="nav-item dropdown">
