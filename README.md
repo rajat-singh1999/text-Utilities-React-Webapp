@@ -1,5 +1,6 @@
+ReadMe
+
 This is a simple react app that gives insight about the text entered in the provided text area.
 
-The app is under development and is not ready yet.
-
-This is my first repository that I am pushing through the command line!
+The app is ready to use.
+You can find the app at: https://rajat-singh1999.github.io/text-Utilities-React-Webapp
